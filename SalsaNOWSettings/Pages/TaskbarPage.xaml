@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="SalsaNOWSettings.Pages.TaskbarPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:SalsaNOWSettings.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    SizeChanged="Page_SizeChanged">
+
+    <ScrollViewer HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel
+            x:Name="ContentColumn"
+            Margin="0,20,0,48"
+            HorizontalAlignment="Center"
+            Spacing="20">
+
+            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                <HyperlinkButton
+                    Padding="0"
+                    Click="Personalization_Click"
+                    FontSize="28"
+                    FontWeight="SemiBold"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+                    <TextBlock FontSize="28" FontWeight="SemiBold" Text="Personalization" />
+                </HyperlinkButton>
+                <FontIcon
+                    Margin="0,6,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="12"
+                    Glyph="&#xE76C;" />
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="28"
+                    FontWeight="SemiBold"
+                    Text="Taskbar" />
+            </StackPanel>
+
+            <StackPanel Spacing="8">
+                <TextBlock FontSize="16" FontWeight="SemiBold" Text="Taskbar behaviors" />
+                <TextBlock
+                    FontSize="12"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                    Text="Taskbar alignment, badging, automatically hide, and transparency" />
+            </StackPanel>
+
+            <Border Style="{StaticResource SettingsChromeStyle}">
+                <StackPanel>
+                    <controls:SettingsCard
+                        Header="Taskbar alignment"
+                        IsClickEnabled="False"
+                        ShowChevron="False">
+                        <controls:SettingsCard.ActionContent>
+                            <ComboBox
+                                x:Name="AlignmentBox"
+                                MinWidth="148"
+                                SelectionChanged="AlignmentBox_SelectionChanged">
+                                <ComboBoxItem Content="Left" Tag="0" />
+                                <ComboBoxItem Content="Center" Tag="1" />
+                            </ComboBox>
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+
+                    <controls:SettingsCard
+                        Header="Automatically hide the taskbar"
+                        IsClickEnabled="False"
+                        ShowChevron="False">
+                        <controls:SettingsCard.ActionContent>
+                            <CheckBox x:Name="AutoHideBox" Click="AutoHideBox_Click" />
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+
+                    <controls:SettingsCard
+                        Header="Show badges on taskbar apps"
+                        IsClickEnabled="False"
+                        ShowChevron="False">
+                        <controls:SettingsCard.ActionContent>
+                            <CheckBox x:Name="BadgesBox" Click="BadgesBox_Click" />
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+
+                    <controls:SettingsCard
+                        Header="Show flashing on taskbar apps"
+                        IsClickEnabled="False"
+                        ShowChevron="False">
+                        <controls:SettingsCard.ActionContent>
+                            <CheckBox x:Name="FlashingBox" Click="FlashingBox_Click" />
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+
+                    <controls:SettingsCard
+                        Header="Full transparency via TranslucentTB"
+                        IsClickEnabled="False"
+                        ShowChevron="False">
+                        <controls:SettingsCard.ActionContent>
+                            <CheckBox x:Name="TransparencyBox" Click="TransparencyBox_Click" />
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+
+                    <controls:SettingsCard
+                        Header="Share any window from my taskbar"
+                        IsClickEnabled="False"
+                        ShowChevron="False">
+                        <controls:SettingsCard.ActionContent>
+                            <CheckBox x:Name="ShareBox" Click="ShareBox_Click" />
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+
+                    <controls:SettingsCard
+                        Header="Select the far corner of the taskbar to show the desktop"
+                        IsClickEnabled="False"
+                        ShowChevron="False">
+                        <controls:SettingsCard.ActionContent>
+                            <CheckBox x:Name="ShowDesktopBox" Click="ShowDesktopBox_Click" />
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+
+                    <controls:SettingsCard
+                        Header="Combine taskbar buttons and hide labels"
+                        IsClickEnabled="False"
+                        ShowChevron="False">
+                        <controls:SettingsCard.ActionContent>
+                            <ComboBox
+                                x:Name="CombineBox"
+                                MinWidth="196"
+                                SelectionChanged="CombineBox_SelectionChanged">
+                                <ComboBoxItem Content="Always" Tag="0" />
+                                <ComboBoxItem Content="When taskbar is full" Tag="1" />
+                                <ComboBoxItem Content="Never" Tag="2" />
+                            </ComboBox>
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+
+                    <controls:SettingsCard
+                        Header="Show smaller taskbar buttons"
+                        IsClickEnabled="False"
+                        ShowChevron="False"
+                        ShowDivider="False">
+                        <controls:SettingsCard.ActionContent>
+                            <ComboBox
+                                x:Name="SmallerBox"
+                                MinWidth="196"
+                                SelectionChanged="SmallerBox_SelectionChanged">
+                                <ComboBoxItem Content="Never" Tag="1" />
+                                <ComboBoxItem Content="Always" Tag="0" />
+                                <ComboBoxItem Content="When taskbar is full" Tag="2" />
+                            </ComboBox>
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

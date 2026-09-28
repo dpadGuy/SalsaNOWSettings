@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="SalsaNOWSettings.Pages.ControlsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:SalsaNOWSettings.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel
+            MaxWidth="800"
+            Margin="0,20,0,48"
+            HorizontalAlignment="Center"
+            Spacing="16">
+            <TextBlock FontSize="28" FontWeight="SemiBold" Text="Controls" />
+            <TextBlock
+                FontSize="13"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                Text="Drop buttons, knobs, and other custom pieces here. This page is the playground for environment-specific hardware."
+                TextWrapping="Wrap" />
+
+            <Border Style="{StaticResource SettingsChromeStyle}" Padding="4,8,4,12">
+                <StackPanel>
+                    <controls:SettingsCard
+                        Description="Master level for this environment"
+                        Header="Output gain"
+                        IconGlyph="&#xE767;"
+                        IsClickEnabled="False"
+                        ShowChevron="False">
+                        <controls:SettingsCard.ActionContent>
+                            <controls:KnobControl x:Name="GainKnob" Value="62" ValueChanged="Knob_ValueChanged" />
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+                    <controls:SettingsCard
+                        Description="Filter sweep / FX send"
+                        Header="Color"
+                        IconGlyph="&#xE790;"
+                        IsClickEnabled="False"
+                        ShowChevron="False">
+                        <controls:SettingsCard.ActionContent>
+                            <controls:KnobControl x:Name="ColorKnob" Value="28" ValueChanged="Knob_ValueChanged" />
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+                    <controls:SettingsCard
+                        Description="How hard the host pushes the output"
+                        Header="Drive"
+                        IconGlyph="&#xE9CA;"
+                        IsClickEnabled="False"
+                        ShowChevron="False"
+                        ShowDivider="False">
+                        <controls:SettingsCard.ActionContent>
+                            <controls:KnobControl x:Name="DriveKnob" Value="44" ValueChanged="Knob_ValueChanged" />
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource SettingsChromeStyle}">
+                <StackPanel>
+                    <controls:SettingsCard
+                        Description="Latch this environment into the live path"
+                        Header="Engage"
+                        IconGlyph="&#xE768;"
+                        IsClickEnabled="False"
+                        ShowChevron="False">
+                        <controls:SettingsCard.ActionContent>
+                            <ToggleSwitch MinWidth="0" IsOn="True" OffContent="" OnContent="" />
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+                    <controls:SettingsCard
+                        Description="A row of host actions you can replace later"
+                        Header="Transport"
+                        IconGlyph="&#xE768;"
+                        IsClickEnabled="False"
+                        ShowChevron="False"
+                        ShowDivider="False">
+                        <controls:SettingsCard.ActionContent>
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Button Content="Reset" Click="Reset_Click" />
+                                <Button Content="Bypass" />
+                                <Button Style="{StaticResource AccentButtonStyle}" Content="Apply" />
+                            </StackPanel>
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+                </StackPanel>
+            </Border>
+
+            <TextBlock
+                x:Name="ReadoutText"
+                FontSize="12"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>

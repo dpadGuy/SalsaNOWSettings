@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="SalsaNOWSettings.Pages.StartupPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:SalsaNOWSettings.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    SizeChanged="Page_SizeChanged">
+
+    <ScrollViewer HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel
+            x:Name="ContentColumn"
+            Margin="0,20,0,48"
+            HorizontalAlignment="Center"
+            Spacing="20">
+
+            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                <HyperlinkButton
+                    Padding="0"
+                    Click="Apps_Click"
+                    FontSize="28"
+                    FontWeight="SemiBold"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+                    <TextBlock FontSize="28" FontWeight="SemiBold" Text="Apps" />
+                </HyperlinkButton>
+                <FontIcon
+                    Margin="0,6,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="12"
+                    Glyph="&#xE76C;" />
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="28"
+                    FontWeight="SemiBold"
+                    Text="Startup" />
+            </StackPanel>
+
+            <StackPanel Spacing="8">
+                <TextBlock FontSize="16" FontWeight="SemiBold" Text="Startup apps" />
+                <TextBlock
+                    FontSize="12"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                    Text="SalsaNOW can start Steam and this batch when a GeForce NOW session begins" />
+            </StackPanel>
+
+            <StackPanel Spacing="8">
+                <Border Style="{StaticResource SettingsChromeStyle}">
+                    <StackPanel>
+                        <controls:SettingsCard
+                            Description="Start Steam with -silent when a GeForce NOW session begins"
+                            Header="Steam silent launch"
+                            IconGlyph="&#xE7FC;"
+                            IsClickEnabled="False"
+                            ShowChevron="False">
+                            <controls:SettingsCard.ActionContent>
+                                <ToggleSwitch
+                                    x:Name="SteamSilentSwitch"
+                                    MinWidth="0"
+                                    OffContent="Off"
+                                    OnContent="On"
+                                    Toggled="SteamSilentSwitch_Toggled" />
+                            </controls:SettingsCard.ActionContent>
+                        </controls:SettingsCard>
+                        <controls:SettingsCard
+                            Description="This creates a SalsaNOW startup batch at I:\Apps\SalsaNOW\StartupBatch.bat"
+                            Header="Run startup batch"
+                            IconGlyph="&#xE7E8;"
+                            IsClickEnabled="False"
+                            ShowChevron="False"
+                            ShowDivider="False">
+                            <controls:SettingsCard.ActionContent>
+                                <ToggleSwitch
+                                    x:Name="EnabledSwitch"
+                                    MinWidth="0"
+                                    OffContent="Off"
+                                    OnContent="On"
+                                    Toggled="EnabledSwitch_Toggled" />
+                            </controls:SettingsCard.ActionContent>
+                        </controls:SettingsCard>
+                    </StackPanel>
+                </Border>
+                <TextBlock
+                    x:Name="ErrorText"
+                    FontSize="12"
+                    Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+                    TextWrapping="Wrap"
+                    Visibility="Collapsed" />
+            </StackPanel>
+
+            <StackPanel x:Name="EditorHost" Spacing="8" Visibility="Collapsed">
+                <Grid>
+                    <TextBlock FontSize="16" FontWeight="SemiBold" Text="Startup batch" />
+                    <TextBlock
+                        x:Name="SaveStatus"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                </Grid>
+                <TextBlock
+                    FontSize="12"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                    Text="I:\Apps\SalsaNOW\StartupBatch.bat  ·  Changes save automatically" />
+                <Border Style="{StaticResource SettingsChromeStyle}" Padding="8">
+                    <TextBox
+                        x:Name="ScriptBox"
+                        MinHeight="280"
+                        AcceptsReturn="True"
+                        FontFamily="Cascadia Mono, Consolas"
+                        FontSize="13"
+                        PlaceholderText="Add batch commands SalsaNOW should run at startup"
+                        TextWrapping="Wrap"
+                        TextChanged="ScriptBox_TextChanged" />
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

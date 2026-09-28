@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SalsaNOWSettings": {
+      "commandName": "Project"
+    },
+    "SalsaNOWSettings (Package)": {
+      "commandName": "MsixPackage"
+    }
+  }
+}

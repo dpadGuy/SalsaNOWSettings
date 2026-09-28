@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="SalsaNOWSettings.Pages.StoragePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    SizeChanged="Page_SizeChanged">
+
+    <ScrollViewer HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel
+            x:Name="ContentColumn"
+            Margin="0,20,0,48"
+            HorizontalAlignment="Center"
+            Spacing="20">
+
+            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                <HyperlinkButton
+                    Padding="0"
+                    Click="System_Click"
+                    FontSize="28"
+                    FontWeight="SemiBold"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+                    <TextBlock FontSize="28" FontWeight="SemiBold" Text="System" />
+                </HyperlinkButton>
+                <FontIcon
+                    Margin="0,6,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="12"
+                    Glyph="&#xE76C;" />
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="28"
+                    FontWeight="SemiBold"
+                    Text="Persistent storage" />
+            </StackPanel>
+
+            <Border Style="{StaticResource SettingsChromeStyle}" Padding="20,16">
+                <StackPanel Spacing="10">
+                    <TextBlock
+                        FontSize="12"
+                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                        Text="I: drive" />
+                    <TextBlock
+                        x:Name="DriveTitle"
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        Text="Scanning I:..." />
+                    <ProgressBar
+                        x:Name="DriveBar"
+                        Height="8"
+                        Maximum="100" />
+                    <TextBlock
+                        x:Name="DriveUsed"
+                        FontSize="12"
+                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                        TextWrapping="Wrap" />
+                    <TextBlock
+                        x:Name="DriveWarning"
+                        FontSize="12"
+                        Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+                        Text="You do not have persistent storage."
+                        TextWrapping="Wrap"
+                        Visibility="Collapsed" />
+                </StackPanel>
+            </Border>
+
+            <StackPanel Spacing="8">
+                <TextBlock FontSize="16" FontWeight="SemiBold" Text="Largest on I:" />
+                <TextBlock
+                    FontSize="12"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                    Text="Folders and files using the most space. Open a folder to drill down, or delete what you do not need." />
+                <Grid ColumnSpacing="6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        x:Name="BackButton"
+                        Width="36"
+                        Height="32"
+                        Padding="0"
+                        Click="Back_Click"
+                        IsEnabled="False"
+                        ToolTipService.ToolTip="Back">
+                        <FontIcon FontSize="12" Glyph="&#xE72B;" />
+                    </Button>
+                    <Button
+                        x:Name="ForwardButton"
+                        Grid.Column="1"
+                        Width="36"
+                        Height="32"
+                        Padding="0"
+                        Click="Forward_Click"
+                        IsEnabled="False"
+                        ToolTipService.ToolTip="Forward">
+                        <FontIcon FontSize="12" Glyph="&#xE72A;" />
+                    </Button>
+                    <Button
+                        x:Name="UpButton"
+                        Grid.Column="2"
+                        Width="36"
+                        Height="32"
+                        Padding="0"
+                        Click="Up_Click"
+                        IsEnabled="False"
+                        ToolTipService.ToolTip="Up">
+                        <FontIcon FontSize="12" Glyph="&#xE74A;" />
+                    </Button>
+                    <TextBox
+                        x:Name="AddressBox"
+                        Grid.Column="3"
+                        VerticalAlignment="Center"
+                        PlaceholderText="I:\"
+                        KeyDown="AddressBox_KeyDown" />
+                    <Button
+                        Grid.Column="4"
+                        Width="36"
+                        Height="32"
+                        Padding="0"
+                        Click="Refresh_Click"
+                        ToolTipService.ToolTip="Refresh">
+                        <FontIcon FontSize="12" Glyph="&#xE72C;" />
+                    </Button>
+                </Grid>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                <ProgressRing
+                    x:Name="ScanRing"
+                    Width="20"
+                    Height="20"
+                    IsActive="True" />
+                <TextBlock
+                    x:Name="ScanStatus"
+                    FontSize="12"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                    Text="Scanning I:..."
+                    VerticalAlignment="Center" />
+            </StackPanel>
+
+            <Border Style="{StaticResource SettingsChromeStyle}">
+                <StackPanel x:Name="ItemsHost" />
+            </Border>
+
+            <TextBlock
+                x:Name="ErrorText"
+                FontSize="12"
+                Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+                TextWrapping="Wrap"
+                Visibility="Collapsed" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>

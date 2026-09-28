@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="SalsaNOWSettings.Pages.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:SalsaNOWSettings.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    SizeChanged="Page_SizeChanged">
+
+    <ScrollViewer HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel
+            x:Name="ContentColumn"
+            Margin="0,20,0,48"
+            HorizontalAlignment="Center"
+            Spacing="16">
+
+            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                <HyperlinkButton
+                    Padding="0"
+                    Click="System_Click"
+                    FontSize="28"
+                    FontWeight="SemiBold"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+                    <TextBlock FontSize="28" FontWeight="SemiBold" Text="System" />
+                </HyperlinkButton>
+                <FontIcon
+                    Margin="0,6,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="12"
+                    Glyph="&#xE76C;" />
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="28"
+                    FontWeight="SemiBold"
+                    Text="About" />
+            </StackPanel>
+
+            <Grid x:Name="SummaryGrid" ColumnSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" Style="{StaticResource SettingsChromeStyle}" Padding="16">
+                    <StackPanel Spacing="6">
+                        <FontIcon HorizontalAlignment="Left" FontSize="16" Glyph="&#xEDA2;" />
+                        <TextBlock FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Persistent Storage" />
+                        <TextBlock x:Name="StorageValue" FontSize="20" FontWeight="SemiBold" TextWrapping="Wrap" />
+                        <TextBlock
+                            x:Name="StorageUsed"
+                            FontSize="12"
+                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                            TextWrapping="Wrap" />
+                        <TextBlock
+                            x:Name="StorageWarning"
+                            FontSize="12"
+                            Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+                            Text="You do not have persistent storage."
+                            TextWrapping="Wrap"
+                            Visibility="Collapsed" />
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="1" Style="{StaticResource SettingsChromeStyle}" Padding="16">
+                    <StackPanel Spacing="6">
+                        <FontIcon HorizontalAlignment="Left" FontSize="16" Glyph="&#xE7F4;" />
+                        <TextBlock FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Graphics card" />
+                        <TextBlock x:Name="GraphicsValue" FontSize="16" FontWeight="SemiBold" TextWrapping="Wrap" />
+                        <TextBlock
+                            x:Name="GraphicsMemory"
+                            FontSize="12"
+                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="2" Style="{StaticResource SettingsChromeStyle}" Padding="16">
+                    <StackPanel Spacing="6">
+                        <FontIcon HorizontalAlignment="Left" FontSize="16" Glyph="&#xEEA0;" />
+                        <TextBlock FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Installed RAM" />
+                        <TextBlock x:Name="RamValue" FontSize="20" FontWeight="SemiBold" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="3" Style="{StaticResource SettingsChromeStyle}" Padding="16">
+                    <StackPanel Spacing="6">
+                        <FontIcon HorizontalAlignment="Left" FontSize="16" Glyph="&#xE950;" />
+                        <TextBlock FontSize="12" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Processor" />
+                        <TextBlock x:Name="ProcessorValue" FontSize="16" FontWeight="SemiBold" TextWrapping="Wrap" />
+                        <TextBlock
+                            x:Name="ProcessorSpeed"
+                            FontSize="12"
+                            Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Border Style="{StaticResource SettingsChromeStyle}">
+                <StackPanel Padding="16,12" Spacing="2">
+                    <TextBlock x:Name="DeviceNameText" FontSize="16" FontWeight="SemiBold" />
+                    <TextBlock
+                        x:Name="DeviceModelText"
+                        FontSize="12"
+                        Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource SettingsChromeStyle}">
+                <StackPanel>
+                    <Grid Padding="16,10" ColumnSpacing="12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <FontIcon VerticalAlignment="Center" FontSize="16" Glyph="&#xE946;" />
+                        <TextBlock
+                            Grid.Column="1"
+                            VerticalAlignment="Center"
+                            FontSize="14"
+                            Text="Rig specifications" />
+                        <Button
+                            Grid.Column="2"
+                            VerticalAlignment="Center"
+                            Click="Copy_Click"
+                            Content="Copy" />
+                        <Button
+                            x:Name="SpecsToggle"
+                            Grid.Column="3"
+                            Width="36"
+                            Height="32"
+                            Padding="0"
+                            VerticalAlignment="Center"
+                            Click="SpecsToggle_Click">
+                            <FontIcon x:Name="SpecsChevron" FontSize="12" Glyph="&#xE70D;" />
+                        </Button>
+                    </Grid>
+                    <StackPanel x:Name="SpecsHost" Padding="48,0,16,16" Spacing="10">
+                        <Grid ColumnSpacing="24">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="160" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Rig name" />
+                            <TextBlock x:Name="SpecDeviceName" Grid.Column="1" TextWrapping="Wrap" />
+                        </Grid>
+                        <Grid ColumnSpacing="24">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="160" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Processor" />
+                            <TextBlock x:Name="SpecProcessor" Grid.Column="1" TextWrapping="Wrap" />
+                        </Grid>
+                        <Grid ColumnSpacing="24">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="160" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Graphics" />
+                            <TextBlock x:Name="SpecGraphics" Grid.Column="1" TextWrapping="Wrap" />
+                        </Grid>
+                        <Grid ColumnSpacing="24">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="160" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Installed RAM" />
+                            <TextBlock x:Name="SpecRam" Grid.Column="1" TextWrapping="Wrap" />
+                        </Grid>
+                        <Grid ColumnSpacing="24">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="160" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Edition" />
+                            <TextBlock x:Name="SpecEdition" Grid.Column="1" TextWrapping="Wrap" />
+                        </Grid>
+                        <Grid ColumnSpacing="24">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="160" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="OS build" />
+                            <TextBlock x:Name="SpecOsBuild" Grid.Column="1" TextWrapping="Wrap" />
+                        </Grid>
+                        <Grid ColumnSpacing="24">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="160" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Device ID" />
+                            <TextBlock x:Name="SpecDeviceId" Grid.Column="1" IsTextSelectionEnabled="True" TextWrapping="Wrap" />
+                        </Grid>
+                        <Grid ColumnSpacing="24">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="160" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Product ID" />
+                            <TextBlock x:Name="SpecProductId" Grid.Column="1" IsTextSelectionEnabled="True" TextWrapping="Wrap" />
+                        </Grid>
+                        <Grid ColumnSpacing="24">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="160" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="System type" />
+                            <TextBlock x:Name="SpecSystemType" Grid.Column="1" TextWrapping="Wrap" />
+                        </Grid>
+                        <Grid ColumnSpacing="24">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="160" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Pen and touch" />
+                            <TextBlock x:Name="SpecPen" Grid.Column="1" TextWrapping="Wrap" />
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

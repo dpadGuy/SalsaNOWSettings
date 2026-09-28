@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="SalsaNOWSettings.Pages.ColorsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:SalsaNOWSettings.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    SizeChanged="Page_SizeChanged">
+
+    <ScrollViewer HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel
+            x:Name="ContentColumn"
+            Margin="0,20,0,48"
+            HorizontalAlignment="Center"
+            Spacing="20">
+
+            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                <HyperlinkButton
+                    Padding="0"
+                    Click="Personalization_Click"
+                    FontSize="28"
+                    FontWeight="SemiBold"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+                    <TextBlock FontSize="28" FontWeight="SemiBold" Text="Personalization" />
+                </HyperlinkButton>
+                <FontIcon
+                    Margin="0,6,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="12"
+                    Glyph="&#xE76C;" />
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="28"
+                    FontWeight="SemiBold"
+                    Text="Colors" />
+            </StackPanel>
+
+            <controls:WallpaperPreview x:Name="HeroPreview" HorizontalAlignment="Left" />
+
+            <Border Style="{StaticResource SettingsChromeStyle}">
+                <StackPanel>
+                    <controls:SettingsCard
+                        Description="Change the colors that appear in Windows and your apps"
+                        Header="Choose your mode"
+                        IconGlyph="&#xE793;"
+                        IsClickEnabled="False"
+                        ShowChevron="False">
+                        <controls:SettingsCard.ActionContent>
+                            <ComboBox
+                                x:Name="ModeBox"
+                                MinWidth="128"
+                                SelectionChanged="ModeBox_SelectionChanged">
+                                <ComboBoxItem Content="Light" Tag="Light" />
+                                <ComboBoxItem Content="Dark" Tag="Dark" />
+                                <ComboBoxItem Content="Custom" Tag="Custom" />
+                            </ComboBox>
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+
+                    <controls:SettingsCard
+                        x:Name="WindowsModeCard"
+                        Description="Windows chrome, Start, and taskbar"
+                        Header="Choose your default Windows mode"
+                        IsClickEnabled="False"
+                        ShowChevron="False"
+                        Visibility="Collapsed">
+                        <controls:SettingsCard.ActionContent>
+                            <ComboBox
+                                x:Name="WindowsModeBox"
+                                MinWidth="128"
+                                SelectionChanged="WindowsModeBox_SelectionChanged">
+                                <ComboBoxItem Content="Light" />
+                                <ComboBoxItem Content="Dark" />
+                            </ComboBox>
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+
+                    <controls:SettingsCard
+                        x:Name="AppModeCard"
+                        Description="Apps and this settings window"
+                        Header="Choose your default app mode"
+                        IsClickEnabled="False"
+                        ShowChevron="False"
+                        Visibility="Collapsed">
+                        <controls:SettingsCard.ActionContent>
+                            <ComboBox
+                                x:Name="AppModeBox"
+                                MinWidth="128"
+                                SelectionChanged="AppModeBox_SelectionChanged">
+                                <ComboBoxItem Content="Light" />
+                                <ComboBoxItem Content="Dark" />
+                            </ComboBox>
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+
+                    <controls:SettingsCard
+                        Description="Windows and surfaces appear translucent"
+                        Header="Transparency effects"
+                        IconGlyph="&#xE7F7;"
+                        IsClickEnabled="False"
+                        ShowChevron="False">
+                        <controls:SettingsCard.ActionContent>
+                            <ToggleSwitch
+                                x:Name="TransparencySwitch"
+                                MinWidth="0"
+                                OffContent="Off"
+                                OnContent="On"
+                                Toggled="TransparencySwitch_Toggled" />
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+
+                    <controls:SettingsCard
+                        Header="Accent color"
+                        IconGlyph="&#xE790;"
+                        IsClickEnabled="False"
+                        ShowChevron="False"
+                        ShowDivider="False">
+                        <controls:SettingsCard.ActionContent>
+                            <ComboBox
+                                x:Name="AccentSourceBox"
+                                MinWidth="128"
+                                SelectionChanged="AccentSourceBox_SelectionChanged">
+                                <ComboBoxItem Content="Automatic" />
+                                <ComboBoxItem Content="Manual" />
+                            </ComboBox>
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+
+                    <StackPanel
+                        x:Name="AccentDetails"
+                        Padding="48,4,16,8"
+                        Spacing="16"
+                        Visibility="Collapsed">
+                        <Grid x:Name="ColorHost" MinHeight="220">
+                            <StackPanel x:Name="AccentPalettes" Spacing="16">
+                                <StackPanel Spacing="10">
+                                    <TextBlock FontSize="13" Text="Recent colors" />
+                                    <StackPanel x:Name="RecentHost" Orientation="Horizontal" Spacing="8" />
+                                </StackPanel>
+
+                                <StackPanel Spacing="10">
+                                    <TextBlock FontSize="13" Text="Windows colors" />
+                                    <Grid x:Name="WindowsColorGrid" ColumnSpacing="8" RowSpacing="8" />
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel
+                                x:Name="ColorLoading"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Spacing="12"
+                                Visibility="Collapsed">
+                                <ProgressRing
+                                    x:Name="ColorLoadingRing"
+                                    Width="36"
+                                    Height="36"
+                                    HorizontalAlignment="Center"
+                                    IsActive="False" />
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                    Text="Applying color..." />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <controls:SettingsCard
+                        x:Name="CustomColorsCard"
+                        Header="Custom colors"
+                        IsClickEnabled="False"
+                        ShowChevron="False"
+                        ShowDivider="False"
+                        Visibility="Collapsed">
+                        <controls:SettingsCard.ActionContent>
+                            <Button Click="ViewColors_Click" Content="View colors" />
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

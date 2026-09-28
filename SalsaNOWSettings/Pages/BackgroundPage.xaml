@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="SalsaNOWSettings.Pages.BackgroundPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:SalsaNOWSettings.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    SizeChanged="Page_SizeChanged">
+
+    <ScrollViewer HorizontalScrollMode="Disabled" VerticalScrollBarVisibility="Auto">
+        <StackPanel
+            x:Name="ContentColumn"
+            Margin="0,20,0,48"
+            HorizontalAlignment="Center"
+            Spacing="20">
+
+            <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                <HyperlinkButton
+                    Padding="0"
+                    Click="Personalization_Click"
+                    FontSize="28"
+                    FontWeight="SemiBold"
+                    Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+                    <TextBlock FontSize="28" FontWeight="SemiBold" Text="Personalization" />
+                </HyperlinkButton>
+                <FontIcon
+                    Margin="0,6,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="12"
+                    Glyph="&#xE76C;" />
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="28"
+                    FontWeight="SemiBold"
+                    Text="Background" />
+            </StackPanel>
+
+            <controls:WallpaperPreview x:Name="HeroPreview" HorizontalAlignment="Left" />
+
+            <StackPanel Spacing="8">
+                <Border Style="{StaticResource SettingsChromeStyle}">
+                    <controls:SettingsCard
+                        Description="Download today's Bing photo and set it as the desktop background"
+                        Header="Bing wallpaper of the day"
+                        IconGlyph="&#xE787;"
+                        IsClickEnabled="False"
+                        ShowChevron="False"
+                        ShowDivider="False">
+                        <controls:SettingsCard.ActionContent>
+                            <ToggleSwitch
+                                x:Name="BingSwitch"
+                                MinWidth="0"
+                                OffContent="Off"
+                                OnContent="On"
+                                Toggled="BingSwitch_Toggled" />
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+                </Border>
+                <TextBlock
+                    x:Name="ErrorText"
+                    FontSize="12"
+                    Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+                    TextWrapping="Wrap"
+                    Visibility="Collapsed" />
+            </StackPanel>
+
+            <Border Style="{StaticResource SettingsChromeStyle}" Padding="4,8,4,15">
+                <StackPanel Spacing="14">
+                    <Grid ColumnSpacing="16" Padding="12,4,12,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <FontIcon Margin="0,4,0,0" FontSize="18" Glyph="&#xE91B;" />
+                        <StackPanel Grid.Column="1" Spacing="4">
+                            <TextBlock FontSize="14" Text="Personalize your background" />
+                            <TextBlock
+                                FontSize="12"
+                                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                Text="A picture background applies to your current desktop."
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Grid>
+
+                    <StackPanel Padding="12,0" Spacing="20">
+                        <Grid MinHeight="180">
+                            <GridView
+                                x:Name="WallpaperGrid"
+                                HorizontalAlignment="Center"
+                                IsItemClickEnabled="True"
+                                IsSwipeEnabled="False"
+                                SelectionMode="None"
+                                ItemClick="WallpaperGrid_ItemClick"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                ScrollViewer.HorizontalScrollMode="Disabled"
+                                ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                ScrollViewer.VerticalScrollMode="Disabled">
+                                <GridView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <ItemsWrapGrid
+                                            MaximumRowsOrColumns="5"
+                                            HorizontalAlignment="Center"
+                                            Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </GridView.ItemsPanel>
+                                <GridView.ItemContainerStyle>
+                                    <Style TargetType="GridViewItem">
+                                        <Setter Property="Margin" Value="0,0,12,12" />
+                                        <Setter Property="Padding" Value="0" />
+                                        <Setter Property="MinWidth" Value="0" />
+                                        <Setter Property="MinHeight" Value="0" />
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="BorderThickness" Value="0" />
+                                    </Style>
+                                </GridView.ItemContainerStyle>
+                            </GridView>
+                            <StackPanel
+                                x:Name="WallpaperLoading"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Spacing="12">
+                                <ProgressRing
+                                    Width="36"
+                                    Height="36"
+                                    HorizontalAlignment="Center"
+                                    IsActive="True" />
+                                <TextBlock
+                                    HorizontalAlignment="Center"
+                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                    Text="Loading wallpapers..." />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <Grid Padding="30,0,12,0" ColumnSpacing="16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="1" Click="Browse_Click" Content="Browse backgrounds" />
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
