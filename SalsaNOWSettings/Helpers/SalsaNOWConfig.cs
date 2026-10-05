@@ -31,6 +31,7 @@ public sealed class SalsaNOWConfigData
     public bool? TaskbarFullTransparency { get; set; }
     public string? Wallpaper { get; set; }
     public bool? SteamSilentLaunch { get; set; }
+    public bool? SteamInput { get; set; }
     public bool? BingWallpaper { get; set; }
 }
 

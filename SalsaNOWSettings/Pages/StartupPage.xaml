@@ -38,48 +38,71 @@
             </StackPanel>
 
             <StackPanel Spacing="8">
+                <TextBlock FontSize="16" FontWeight="SemiBold" Text="Steam" />
+            </StackPanel>
+
+            <Border Style="{StaticResource SettingsChromeStyle}">
+                <StackPanel>
+                    <controls:SettingsCard
+                        Description="Start Steam with -silent when a GeForce NOW session begins"
+                        Header="Steam silent launch"
+                        IconGlyph="&#xE7FC;"
+                        IsClickEnabled="False"
+                        ShowChevron="False">
+                        <controls:SettingsCard.ActionContent>
+                            <ToggleSwitch
+                                x:Name="SteamSilentSwitch"
+                                MinWidth="0"
+                                OffContent="Off"
+                                OnContent="On"
+                                Toggled="SteamSilentSwitch_Toggled" />
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+                    <controls:SettingsCard
+                        Description="Let Steam handle controller input. Off can avoid gamepad conflicts and is the default"
+                        Header="Steam Input"
+                        IconGlyph="&#xE7FC;"
+                        IsClickEnabled="False"
+                        ShowChevron="False"
+                        ShowDivider="False">
+                        <controls:SettingsCard.ActionContent>
+                            <ToggleSwitch
+                                x:Name="SteamInputSwitch"
+                                MinWidth="0"
+                                OffContent="Off"
+                                OnContent="On"
+                                Toggled="SteamInputSwitch_Toggled" />
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+                </StackPanel>
+            </Border>
+
+            <StackPanel Spacing="8">
                 <TextBlock FontSize="16" FontWeight="SemiBold" Text="Startup apps" />
                 <TextBlock
                     FontSize="12"
                     Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                    Text="SalsaNOW can start Steam and this batch when a GeForce NOW session begins" />
+                    Text="SalsaNOW can run this batch when a GeForce NOW session begins" />
             </StackPanel>
 
             <StackPanel Spacing="8">
                 <Border Style="{StaticResource SettingsChromeStyle}">
-                    <StackPanel>
-                        <controls:SettingsCard
-                            Description="Start Steam with -silent when a GeForce NOW session begins"
-                            Header="Steam silent launch"
-                            IconGlyph="&#xE7FC;"
-                            IsClickEnabled="False"
-                            ShowChevron="False">
-                            <controls:SettingsCard.ActionContent>
-                                <ToggleSwitch
-                                    x:Name="SteamSilentSwitch"
-                                    MinWidth="0"
-                                    OffContent="Off"
-                                    OnContent="On"
-                                    Toggled="SteamSilentSwitch_Toggled" />
-                            </controls:SettingsCard.ActionContent>
-                        </controls:SettingsCard>
-                        <controls:SettingsCard
-                            Description="This creates a SalsaNOW startup batch at I:\Apps\SalsaNOW\StartupBatch.bat"
-                            Header="Run startup batch"
-                            IconGlyph="&#xE7E8;"
-                            IsClickEnabled="False"
-                            ShowChevron="False"
-                            ShowDivider="False">
-                            <controls:SettingsCard.ActionContent>
-                                <ToggleSwitch
-                                    x:Name="EnabledSwitch"
-                                    MinWidth="0"
-                                    OffContent="Off"
-                                    OnContent="On"
-                                    Toggled="EnabledSwitch_Toggled" />
-                            </controls:SettingsCard.ActionContent>
-                        </controls:SettingsCard>
-                    </StackPanel>
+                    <controls:SettingsCard
+                        Description="This creates a SalsaNOW startup batch at I:\Apps\SalsaNOW\StartupBatch.bat"
+                        Header="Run startup batch"
+                        IconGlyph="&#xE7E8;"
+                        IsClickEnabled="False"
+                        ShowChevron="False"
+                        ShowDivider="False">
+                        <controls:SettingsCard.ActionContent>
+                            <ToggleSwitch
+                                x:Name="EnabledSwitch"
+                                MinWidth="0"
+                                OffContent="Off"
+                                OnContent="On"
+                                Toggled="EnabledSwitch_Toggled" />
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
                 </Border>
                 <TextBlock
                     x:Name="ErrorText"

@@ -42,7 +42,7 @@ public sealed partial class SettingsShell : UserControl
         new("storage", "Storage", "I: drive, disk usage, largest files, cleanup"),
         new("apps", "Apps", "Installed apps, defaults"),
         new("defaults", "Default apps", "File type defaults, link types, choose a default"),
-        new("startup", "Startup", "Startup batch, Steam silent launch, GeForce NOW session start, StartupBatch.bat"),
+        new("startup", "Startup", "Startup batch, Steam silent launch, Steam Input, GeForce NOW session start, StartupBatch.bat"),
     ];
 
     public SettingsShell()
