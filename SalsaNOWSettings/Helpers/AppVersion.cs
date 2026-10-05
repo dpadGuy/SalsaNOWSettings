@@ -9,7 +9,7 @@ public static class AppVersion
             var version = typeof(App).Assembly.GetName().Version;
             if (version is null)
             {
-                return "1.0.0";
+                return "1.0.1";
             }
 
             return version.Revision is 0 or -1
