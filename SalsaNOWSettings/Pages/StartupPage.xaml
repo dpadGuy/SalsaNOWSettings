@@ -63,8 +63,7 @@
                         Header="Steam Input"
                         IconGlyph="&#xE7FC;"
                         IsClickEnabled="False"
-                        ShowChevron="False"
-                        ShowDivider="False">
+                        ShowChevron="False">
                         <controls:SettingsCard.ActionContent>
                             <ToggleSwitch
                                 x:Name="SteamInputSwitch"
@@ -72,6 +71,22 @@
                                 OffContent="Off"
                                 OnContent="On"
                                 Toggled="SteamInputSwitch_Toggled" />
+                        </controls:SettingsCard.ActionContent>
+                    </controls:SettingsCard>
+                    <controls:SettingsCard
+                        Description="Use SalsaSteam, the 64-bit Steam client, by default"
+                        Header="64-bit Steam (SalsaSteam)"
+                        IconGlyph="&#xE7FC;"
+                        IsClickEnabled="False"
+                        ShowChevron="False"
+                        ShowDivider="False">
+                        <controls:SettingsCard.ActionContent>
+                            <ToggleSwitch
+                                x:Name="SalsaSteamSwitch"
+                                MinWidth="0"
+                                OffContent="Off"
+                                OnContent="On"
+                                Toggled="SalsaSteamSwitch_Toggled" />
                         </controls:SettingsCard.ActionContent>
                     </controls:SettingsCard>
                 </StackPanel>

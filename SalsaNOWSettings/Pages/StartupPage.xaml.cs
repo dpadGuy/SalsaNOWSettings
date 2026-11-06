@@ -30,6 +30,7 @@ public sealed partial class StartupPage : Page
     {
         SteamSilentSwitch.IsOn = SalsaNOWConfig.Current.SteamSilentLaunch == true;
         SteamInputSwitch.IsOn = SalsaNOWConfig.Current.SteamInput == true;
+        SalsaSteamSwitch.IsOn = SalsaNOWConfig.Current.SalsaSteam == true;
         var enabled = StartupBatchSettings.IsEnabled();
         EnabledSwitch.IsOn = enabled;
         if (enabled)
@@ -50,6 +51,16 @@ public sealed partial class StartupPage : Page
         }
 
         SalsaNOWConfig.Update(data => data.SteamSilentLaunch = SteamSilentSwitch.IsOn ? true : null);
+    }
+
+    private void SalsaSteamSwitch_Toggled(object sender, RoutedEventArgs e)
+    {
+        if (!_ready)
+        {
+            return;
+        }
+
+        SalsaNOWConfig.Update(data => data.SalsaSteam = SalsaSteamSwitch.IsOn ? true : null);
     }
 
     private void SteamInputSwitch_Toggled(object sender, RoutedEventArgs e)
